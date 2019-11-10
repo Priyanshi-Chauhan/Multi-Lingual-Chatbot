@@ -62,3 +62,28 @@ function index() {
         })
     }
 }
+
+//this method translates the text using the `translate` enpoint created. 
+  function translateText(message, language, messageType = "receive") {
+        //check if the message is a sent message or received message
+        const text = messageType === "send" ? message: message.data;
+        const translateParams = {
+            text: text,
+            modelId: messageType === "send" ? `${language}-en` : `en-${language}`,
+        };
+        var nmtValue  = '2019-09-28';
+        fetch('/api/translate', {
+            method: 'POST',
+            body: JSON.stringify(translateParams),
+            headers: new Headers({
+                'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val(),
+                'X-Watson-Technology-Preview': nmtValue,
+                "Content-Type": "application/json"
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => console.error(error)) 
+    }

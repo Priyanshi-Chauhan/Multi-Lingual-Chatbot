@@ -42,3 +42,13 @@ app.get('/api/get-languages', function(req, res, next) {
           console.log('error:', err);
         });
       })
+      //This endpoint gets all the model list.
+  app.get('/api/get-model-list', function(req, res, next) {
+    translator.listModels()
+    .then(translationModels => {
+        res.json(translationModels.result)
+    })
+    .catch(err => {
+      console.log('error:', err);
+    });
+})

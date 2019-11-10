@@ -26,3 +26,9 @@ const languageTranslator = new LanguageTranslatorV3({
     }),
     url: 'https://gateway-lon.watsonplatform.net/language-translator/api',
   });  
+//This endpoint translates the text send to it  
+app.post('/api/translate', function(req, res, next) {
+  translator.translate(req.body)
+    .then(data => res.json(data.result))
+    .catch(error => next(error));
+});

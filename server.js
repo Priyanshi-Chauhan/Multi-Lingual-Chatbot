@@ -20,9 +20,9 @@ const LanguageTranslatorV3 = require('ibm-watson/language-translator/v3');
 const { IamAuthenticator } = require('ibm-watson/auth');
 //create an instance of the language translator
 const languageTranslator = new LanguageTranslatorV3({
-    version: '{version}',
+    version: '',
     authenticator: new IamAuthenticator({
-      apikey: '{apikey}',
+      apikey: 'l82cyrh63ZqLgCEnuCs6NH9dv-_MFhJupjNTkNCwKTdk',
     }),
-    url: '{url}',
+    url: 'https://gateway-lon.watsonplatform.net/language-translator/api',
   });  

@@ -32,3 +32,13 @@ app.post('/api/translate', function(req, res, next) {
     .then(data => res.json(data.result))
     .catch(error => next(error));
 });
+//This endpoint gets all the langauges that can be processed by the translator
+app.get('/api/get-languages', function(req, res, next) {
+        translator.listIdentifiableLanguages()
+        .then(identifiedLanguages => {
+            res.json(identifiedLanguages.result);
+        })
+        .catch(err => {
+          console.log('error:', err);
+        });
+      })

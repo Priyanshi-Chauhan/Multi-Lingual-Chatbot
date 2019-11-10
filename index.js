@@ -127,8 +127,19 @@ function index() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // when messages are translated, they get published to the channel
+            const translatedText = data['translations'][0]['translation'];
+            if ( messageType === "send") {
+                channel.publish('text', translatedText);
+                channel.publish("user", {
+                    "name": user.name,
+                    "avatar": user.avatar
+                });
+            } else {
+                show(translatedText, message.timestamp, otherUser);
+            }
         })
+
         .catch(error => console.error(error)) 
     }
     const ably = new Ably.Realtime({
